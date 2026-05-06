@@ -1,0 +1,53 @@
+.pengurus {
+  background: var(--off-white);
+  padding: 7rem 4rem;
+}
+
+.pengurus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.pengurus-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(160,120,80,0.12);
+  border-radius: 4px;
+  background: var(--cream-light);
+  transition: transform 0.3s;
+}
+
+.pengurus-card:hover { transform: translateY(-3px); }
+
+.pengurus-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--cream-mid);
+  border: 2px solid rgba(196,154,60,0.25);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--brown-light);
+}
+
+.pengurus-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.pengurus-role {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}

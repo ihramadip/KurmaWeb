@@ -1,0 +1,150 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream-light);
+  padding: 0 4rem;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(196,154,60,0.1) 0%, transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(107,76,42,0.05) 0%, transparent 50%);
+}
+
+.hero-arch {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 800px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px; /* Diperlebar agar tidak terasa sempit */
+  animation: fadeUp 1s ease forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 6vw, 6.5rem); /* Ukuran lebih besar agar megah */
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--brown-mid);
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--text-light);
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-mid);
+  max-width: 680px;
+  line-height: 1.8;
+  margin-bottom: 3.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.hero-stats {
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  z-index: 2;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--brown-mid);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+/* Responsivitas untuk layar kecil agar tetap rapi */
+@media (max-width: 768px) {
+  .hero-stats {
+    position: relative;
+    bottom: 0;
+    margin-top: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+}

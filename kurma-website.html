@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KURMA — Keluarga Remaja Masjid Al-Ikhuwwah</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5EFE0;
+    --cream-light: #FAF6EE;
+    --cream-mid: #EDE3CC;
+    --brown-dark: #3B2A1A;
+    --brown-mid: #6B4C2A;
+    --brown-light: #A07850;
+    --brown-muted: #C8A87A;
+    --sage: #7A8C6A;
+    --sage-light: #C2CDB6;
+    --gold: #C49A3C;
+    --gold-light: #E8C96A;
+    --off-white: #FDFAF4;
+    --text-dark: #2A1E0F;
+    --text-mid: #5C4025;
+    --text-light: #8B6845;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 239, 224, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(160,120,80,0.15);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-logo img {
+    height: 38px;
+    filter: sepia(40%) saturate(80%) brightness(0.7);
+    opacity: 0.85;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--brown-mid);
+    color: var(--cream-light) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    font-size: 0.78rem !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--brown-dark) !important; color: var(--cream-light) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream-light);
+    padding: 0 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(196,154,60,0.08) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(107,76,42,0.07) 0%, transparent 60%);
+  }
+
+  /* Decorative arch pattern */
+  .hero-arch {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    height: 600px;
+    opacity: 0.06;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--brown-mid);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--text-light);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    max-width: 460px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--brown-mid);
+    color: var(--cream-light);
+    padding: 0.85rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--brown-dark); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--brown-mid); }
+
+  .btn-ghost::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .btn-ghost:hover::after { transform: translateX(4px); }
+
+  .hero-stats {
+    position: absolute;
+    right: 4rem;
+    bottom: 4rem;
+    display: flex;
+    gap: 3rem;
+    z-index: 2;
+  }
+
+  .stat-item {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--brown-mid);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── MARQUEE STRIP ── */
+  .marquee-strip {
+    background: var(--brown-dark);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 28s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--brown-muted);
+    padding: 0 2.5rem;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  .marquee-sep {
+    color: var(--gold);
+    padding: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card-main {
+    background: var(--cream);
+    border: 1px solid rgba(160,120,80,0.2);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .about-ornament {
+    position: absolute;
+    top: -1px;
+    left: 2rem;
+    right: 2rem;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .about-quote {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-quote-attr {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 2rem;
+    background: var(--brown-mid);
+    color: var(--cream-light);
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  .about-badge-num {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+
+  .about-badge-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .value-item {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(196,154,60,0.04);
+  }
+
+  .value-item h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .value-item p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs {
+    background: var(--cream-light);
+  }
+
+  .programs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .program-card {
+    background: var(--off-white);
+    border: 1px solid rgba(160,120,80,0.15);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .program-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .program-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(59,42,26,0.08); }
+  .program-card:hover::before { transform: scaleX(1); }
+
+  .program-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(196,154,60,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .program-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .program-card p {
+    font-size: 0.86rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .program-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    background: rgba(160,120,80,0.1);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ── JADWAL / EVENTS ── */
+  .events {
+    background: var(--brown-dark);
+    color: var(--cream);
+    padding: 7rem 4rem;
+  }
+
+  .events .section-label {
+    color: var(--gold-light);
+  }
+
+  .events .section-label::before { background: var(--gold-light); }
+
+  .events .section-title {
+    color: var(--cream-light);
+  }
+
+  .events-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
+
+  .events-sidebar p {
+    font-size: 0.9rem;
+    color: var(--brown-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-item {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(196,154,60,0.15);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .event-item:hover {
+    background: rgba(196,154,60,0.07);
+    border-color: rgba(196,154,60,0.3);
+  }
+
+  .event-date {
+    text-align: center;
+    border-right: 1px solid rgba(196,154,60,0.2);
+    padding-right: 1.5rem;
+  }
+
+  .event-date-day {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    display: block;
+  }
+
+  .event-date-month {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown-muted);
+    margin-top: 0.2rem;
+  }
+
+  .event-info h4 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--cream-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .event-info span {
+    font-size: 0.78rem;
+    color: var(--brown-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .event-badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .badge-open {
+    background: rgba(122,140,106,0.2);
+    color: #C2CDB6;
+    border: 1px solid rgba(122,140,106,0.3);
+  }
+
+  .badge-soon {
+    background: rgba(196,154,60,0.15);
+    color: var(--gold-light);
+    border: 1px solid rgba(196,154,60,0.25);
+  }
+
+  /* ── GALLERY STRIP ── */
+  .gallery-strip {
+    background: var(--cream-mid);
+    padding: 5rem 4rem;
+    overflow: hidden;
+  }
+
+  .gallery-strip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+
+  .gallery-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .gallery-thumb {
+    flex: none;
+    width: 280px;
+    height: 200px;
+    background: var(--brown-light);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-thumb-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(245,239,224,0.7);
+    font-weight: 300;
+  }
+
+  .gallery-thumb:nth-child(1) { background: #8B6845; }
+  .gallery-thumb:nth-child(2) { background: #6B4C2A; }
+  .gallery-thumb:nth-child(3) { background: #A07850; }
+  .gallery-thumb:nth-child(4) { background: #7A8C6A; }
+  .gallery-thumb:nth-child(5) { background: #C8A87A; }
+  .gallery-thumb:nth-child(6) { background: #5C4025; }
+
+  /* ── PENGURUS ── */
+  .pengurus {
+    background: var(--off-white);
+    padding: 7rem 4rem;
+  }
+
+  .pengurus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pengurus-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(160,120,80,0.12);
+    border-radius: 4px;
+    background: var(--cream-light);
+    transition: transform 0.3s;
+  }
+
+  .pengurus-card:hover { transform: translateY(-3px); }
+
+  .pengurus-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--cream-mid);
+    border: 2px solid rgba(196,154,60,0.25);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--brown-light);
+  }
+
+  .pengurus-name {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .pengurus-role {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--off-white);
+    border: 1px solid rgba(160,120,80,0.25);
+    border-radius: 2px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group textarea {
+    height: 120px;
+    resize: vertical;
+  }
+
+  .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(196,154,60,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .contact-info-item h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-info-item p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark);
+    color: var(--cream-mid);
+    padding: 4rem 4rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(196,154,60,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: rgba(200,168,122,0.6);
+    line-height: 1.8;
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+
+  .footer-logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--cream-light);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-col h5 {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-col ul a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: rgba(200,168,122,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--brown-muted); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: rgba(200,168,122,0.35);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(196,154,60,0.2);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--brown-muted);
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Divider ornament */
+  .ornament-divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8rem;
+    margin: 0 auto;
+    padding: 2rem 0;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="/mnt/user-data/uploads/Logo_Kurma-removebg-preview.png" alt="KURMA">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#jadwal">Jadwal</a></li>
+    <li><a href="#pengurus">Pengurus</a></li>
+    <li><a href="#kontak" class="nav-cta">Bergabung</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative SVG mosque arch -->
+  <svg class="hero-arch" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M250 80 C150 80 80 160 80 270 L80 520 L420 520 L420 270 C420 160 350 80 250 80Z" stroke="#6B4C2A" stroke-width="2" fill="none"/>
+    <path d="M250 30 C120 30 40 140 40 270 L40 560 L460 560 L460 270 C460 140 380 30 250 30Z" stroke="#6B4C2A" stroke-width="1" fill="none" opacity="0.5"/>
+    <circle cx="250" cy="60" r="18" stroke="#C49A3C" stroke-width="1.5" fill="none"/>
+    <circle cx="250" cy="60" r="8" fill="#C49A3C" opacity="0.4"/>
+    <line x1="250" y1="30" x2="250" y2="42" stroke="#C49A3C" stroke-width="1.5"/>
+    <!-- geometric pattern inside arch -->
+    <path d="M180 300 L250 220 L320 300 L250 380Z" stroke="#C49A3C" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M160 340 L250 240 L340 340" stroke="#C49A3C" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <!-- small dome details -->
+    <path d="M200 520 L200 480 C200 430 220 420 250 420 C280 420 300 430 300 480 L300 520" stroke="#6B4C2A" stroke-width="1.5" fill="none"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Masjid Al-Ikhuwwah</div>
+    <h1 class="hero-title">
+      Keluarga<br>
+      <em>Remaja</em><br>
+      Masjid
+    </h1>
+    <p class="hero-subtitle">Bersama Tumbuh, Bersama Berjuang</p>
+    <p class="hero-desc">KURMA hadir sebagai wadah bagi remaja masjid untuk berkembang dalam ilmu, iman, dan akhlak — membangun generasi yang tangguh dan penuh cahaya.</p>
+    <div class="hero-actions">
+      <a href="#kontak" class="btn-primary">Bergabung Sekarang</a>
+      <a href="#program" class="btn-ghost">Lihat Program</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">120+</span>
+      <div class="stat-label">Anggota Aktif</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <div class="stat-label">Divisi</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">5th</span>
+      <div class="stat-label">Tahun Berdiri</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Pengajian Rutin</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Kajian Quran</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Sosial Kemasyarakatan</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Olahraga & Seni</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Rihlah & Wisata Ilmu</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Pelatihan Kepemimpinan</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Pengajian Rutin</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Kajian Quran</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Sosial Kemasyarakatan</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Olahraga & Seni</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Rihlah & Wisata Ilmu</span>
+    <span class="marquee-item marquee-sep">◆</span>
+    <span class="marquee-item">Pelatihan Kepemimpinan</span>
+    <span class="marquee-item marquee-sep">◆</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="tentang">
+  <div class="about-visual fade-in">
+    <div class="about-card-main">
+      <div class="about-ornament"></div>
+      <p class="about-quote">
+        "Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain."
+      </p>
+      <div class="about-quote-attr">— HR. Ahmad & Thabrani</div>
+    </div>
+    <div class="about-badge">
+      <span class="about-badge-num">2019</span>
+      <div class="about-badge-text">Tahun Berdiri</div>
+    </div>
+  </div>
+
+  <div class="about-text fade-in">
+    <div class="section-label">Tentang Kami</div>
+    <h2 class="section-title">Komunitas Remaja yang Berakar pada Masjid</h2>
+    <p>KURMA — Keluarga Remaja Masjid Al-Ikhuwwah adalah organisasi kepemudaan yang lahir dari semangat membangun generasi muda muslim yang berilmu, berkarakter, dan bermanfaat.</p>
+    <p>Kami percaya bahwa masjid bukan hanya tempat ibadah, tetapi juga pusat peradaban dan pemberdayaan generasi muda yang siap menghadapi tantangan zaman.</p>
+
+    <div class="about-values">
+      <div class="value-item">
+        <h4>Keimanan</h4>
+        <p>Memperkuat pondasi aqidah dan ibadah sehari-hari</p>
+      </div>
+      <div class="value-item">
+        <h4>Keilmuan</h4>
+        <p>Menumbuhkan semangat belajar dan mengkaji ilmu</p>
+      </div>
+      <div class="value-item">
+        <h4>Kebersamaan</h4>
+        <p>Mempererat ukhuwah di antara sesama anggota</p>
+      </div>
+      <div class="value-item">
+        <h4>Kebermanfaatan</h4>
+        <p>Berkontribusi nyata untuk masyarakat sekitar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="program">
+  <div class="programs-header fade-in">
+    <div>
+      <div class="section-label">Program Unggulan</div>
+      <h2 class="section-title">Apa yang Kami Lakukan</h2>
+    </div>
+    <a href="#kontak" class="btn-ghost">Semua Program</a>
+  </div>
+
+  <div class="programs-grid">
+    <div class="program-card fade-in">
+      <div class="program-icon">🕌</div>
+      <h3>Kajian Rutin</h3>
+      <p>Kajian mingguan yang membahas fiqih, tafsir, sirah nabawiyah, dan akhlak dengan pembimbing ustadz berpengalaman.</p>
+      <span class="program-tag">Setiap Ahad</span>
+    </div>
+
+    <div class="program-card fade-in">
+      <div class="program-icon">📖</div>
+      <h3>Tahsin & Tahfidz</h3>
+      <p>Program perbaikan bacaan Al-Quran dan hafalan yang terstruktur dengan metode yang mudah dan menyenangkan.</p>
+      <span class="program-tag">Setiap Selasa & Kamis</span>
+    </div>
+
+    <div class="program-card fade-in">
+      <div class="program-icon">🤝</div>
+      <h3>Sosial & Dakwah</h3>
+      <p>Kegiatan bakti sosial, santunan anak yatim, dan program dakwah kepada masyarakat sekitar masjid.</p>
+      <span class="program-tag">Bulanan</span>
+    </div>
+
+    <div class="program-card fade-in">
+      <div class="program-icon">⚽</div>
+      <h3>Olahraga & Seni</h3>
+      <p>Memfasilitasi bakat dan minat anggota dalam bidang olahraga, seni kaligrafi, nasyid, dan kesenian Islami.</p>
+      <span class="program-tag">Sabtu Sore</span>
+    </div>
+
+    <div class="program-card fade-in">
+      <div class="program-icon">🚀</div>
+      <h3>Leadership Training</h3>
+      <p>Pelatihan kepemimpinan, public speaking, dan manajemen organisasi untuk mencetak pemimpin masa depan.</p>
+      <span class="program-tag">Tahunan</span>
+    </div>
+
+    <div class="program-card fade-in">
+      <div class="program-icon">🌿</div>
+      <h3>Rihlah Ilmiah</h3>
+      <p>Perjalanan wisata ilmu ke pesantren, museum Islam, dan tempat bersejarah untuk memperluas wawasan keislaman.</p>
+      <span class="program-tag">Semester</span>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="jadwal">
+  <div class="events-layout">
+    <div class="events-sidebar fade-in">
+      <div class="section-label">Agenda Kegiatan</div>
+      <h2 class="section-title">Jadwal Terdekat</h2>
+      <p>Ikuti berbagai kegiatan KURMA yang dirancang untuk mempererat ukhuwah dan mengembangkan potensi diri anggota.</p>
+      <a href="#" class="btn-primary" style="display: inline-block; margin-top: 0.5rem;">Lihat Semua</a>
+    </div>
+
+    <div class="events-list fade-in">
+
+      <div class="event-item">
+        <div class="event-date">
+          <span class="event-date-day">11</span>
+          <div class="event-date-month">Mei 2025</div>
+        </div>
+        <div class="event-info">
+          <h4>Kajian Ahad Pagi — Tafsir Juz 30</h4>
+          <span>08.00 – 09.30 WIB · Masjid Al-Ikhuwwah</span>
+        </div>
+        <span class="event-badge badge-open">Terbuka</span>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date">
+          <span class="event-date-day">15</span>
+          <div class="event-date-month">Mei 2025</div>
+        </div>
+        <div class="event-info">
+          <h4>Tahsin Al-Quran — Kelas Pemula</h4>
+          <span>19.30 – 21.00 WIB · Aula Masjid</span>
+        </div>
+        <span class="event-badge badge-open">Terbuka</span>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date">
+          <span class="event-date-day">22</span>
+          <div class="event-date-month">Mei 2025</div>
+        </div>
+        <div class="event-info">
+          <h4>Bakti Sosial & Santunan Anak Yatim</h4>
+          <span>07.00 – 12.00 WIB · Lingkungan Masjid</span>
+        </div>
+        <span class="event-badge badge-soon">Segera</span>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date">
+          <span class="event-date-day">01</span>
+          <div class="event-date-month">Jun 2025</div>
+        </div>
+        <div class="event-info">
+          <h4>Leadership Camp KURMA 2025</h4>
+          <span>Sabtu–Ahad · Villa Al-Amin, Lembang</span>
+        </div>
+        <span class="event-badge badge-soon">Segera</span>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date">
+          <span class="event-date-day">14</span>
+          <div class="event-date-month">Jun 2025</div>
+        </div>
+        <div class="event-info">
+          <h4>Rihlah Ilmiah — Pesantren Gontor Putra</h4>
+          <span>Sabtu–Ahad · Ponorogo, Jawa Timur</span>
+        </div>
+        <span class="event-badge badge-soon">Segera</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-strip fade-in">
+  <div class="gallery-strip-header">
+    <div>
+      <div class="section-label">Dokumentasi</div>
+      <h2 class="section-title">Momen Bersama</h2>
+    </div>
+    <a href="#" class="btn-ghost">Lihat Galeri</a>
+  </div>
+  <div class="gallery-row">
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Kajian Rutin</div></div>
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Rihlah 2024</div></div>
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Bakti Sosial</div></div>
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Olahraga Bersama</div></div>
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Leadership Camp</div></div>
+    <div class="gallery-thumb"><div class="gallery-thumb-inner">Tahsin Quran</div></div>
+  </div>
+</div>
+
+<!-- PENGURUS -->
+<section class="pengurus" id="pengurus">
+  <div class="fade-in" style="text-align: center; margin-bottom: 0.5rem;">
+    <div class="section-label" style="justify-content: center;">Kepengurusan</div>
+    <h2 class="section-title" style="text-align: center;">Tim Pengurus KURMA</h2>
+    <p style="color: var(--text-light); font-size: 0.9rem; max-width: 480px; margin: 0 auto;">Dijalankan dengan penuh dedikasi oleh generasi muda yang berkomitmen.</p>
+  </div>
+
+  <div class="pengurus-grid">
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">A</div>
+      <div class="pengurus-name">Ahmad Fauzan</div>
+      <div class="pengurus-role">Ketua Umum</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">F</div>
+      <div class="pengurus-name">Farah Nabilah</div>
+      <div class="pengurus-role">Sekretaris</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">R</div>
+      <div class="pengurus-name">Rizky Hamdani</div>
+      <div class="pengurus-role">Bendahara</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">S</div>
+      <div class="pengurus-name">Salma Aulia</div>
+      <div class="pengurus-role">Div. Keputrian</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">M</div>
+      <div class="pengurus-name">Muhammad Iqbal</div>
+      <div class="pengurus-role">Div. Dakwah</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">D</div>
+      <div class="pengurus-name">Dina Rahmawati</div>
+      <div class="pengurus-role">Div. Pendidikan</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">H</div>
+      <div class="pengurus-name">Hasan Albana</div>
+      <div class="pengurus-role">Div. Olahraga</div>
+    </div>
+    <div class="pengurus-card fade-in">
+      <div class="pengurus-avatar">N</div>
+      <div class="pengurus-name">Nurul Hidayah</div>
+      <div class="pengurus-role">Div. Sosial</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontak">
+  <div class="fade-in">
+    <div class="section-label">Bergabung</div>
+    <h2 class="section-title">Ayo Jadi Bagian dari KURMA</h2>
+    <p style="font-size: 0.9rem; color: var(--text-mid); margin-bottom: 3rem; line-height: 1.9;">Kami menerima anggota baru dengan tangan terbuka. Bergabunglah bersama kami dan jadilah bagian dari keluarga yang saling mendukung dalam kebaikan.</p>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">🕌</div>
+      <div>
+        <h4>Alamat Masjid</h4>
+        <p>Masjid Al-Ikhuwwah<br>Jl. Contoh No. 123, Bandung<br>Jawa Barat, 40123</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <h4>WhatsApp</h4>
+        <p>+62 812 3456 7890<br>Senin – Sabtu, 08.00 – 20.00</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <h4>Email</h4>
+        <p>kurma.alikhuwwah@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">📸</div>
+      <div>
+        <h4>Instagram</h4>
+        <p>@kurma.alikhuwwah</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fade-in">
+    <div style="background: var(--off-white); border: 1px solid rgba(160,120,80,0.15); border-radius: 4px; padding: 2.5rem; position: relative;">
+      <div style="position: absolute; top: 0; left: 2rem; right: 2rem; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+      <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400; margin-bottom: 2rem; color: var(--text-dark);">Formulir Pendaftaran</h3>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" placeholder="Masukkan nama lengkap kamu">
+        </div>
+        <div class="form-group">
+          <label>Nomor WhatsApp</label>
+          <input type="tel" placeholder="+62 812 xxxx xxxx">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="email@kamu.com">
+        </div>
+        <div class="form-group">
+          <label>Usia</label>
+          <select>
+            <option value="">— Pilih rentang usia —</option>
+            <option>13 – 15 tahun</option>
+            <option>16 – 18 tahun</option>
+            <option>19 – 22 tahun</option>
+            <option>22+ tahun</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Pesan / Motivasi</label>
+          <textarea placeholder="Ceritakan motivasimu bergabung dengan KURMA..."></textarea>
+        </div>
+        <button class="btn-primary" style="border: none; cursor: pointer; text-align: center; width: 100%; padding: 1rem;">Kirim Pendaftaran</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-text">KURMA</div>
+      <p>Keluarga Remaja Masjid Al-Ikhuwwah. Bersama tumbuh dalam iman, ilmu, dan akhlak mulia.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Tentang</h5>
+      <ul>
+        <li><a href="#">Sejarah</a></li>
+        <li><a href="#">Visi & Misi</a></li>
+        <li><a href="#">Struktur Org.</a></li>
+        <li><a href="#">Galeri</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Program</h5>
+      <ul>
+        <li><a href="#">Kajian Rutin</a></li>
+        <li><a href="#">Tahsin</a></li>
+        <li><a href="#">Sosial Dakwah</a></li>
+        <li><a href="#">Leadership</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Kontak</h5>
+      <ul>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Lokasi</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 KURMA — Keluarga Remaja Masjid Al-Ikhuwwah. Dibuat dengan ❤️</p>
+    <div class="social-links">
+      <a href="#" class="social-link">in</a>
+      <a href="#" class="social-link">ig</a>
+      <a href="#" class="social-link">yt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger grid children
+  document.querySelectorAll('.programs-grid .program-card, .pengurus-grid .pengurus-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 80) + 'ms';
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.9rem 4rem';
+      nav.style.boxShadow = '0 4px 24px rgba(59,42,26,0.07)';
+    } else {
+      nav.style.padding = '1.2rem 4rem';
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>

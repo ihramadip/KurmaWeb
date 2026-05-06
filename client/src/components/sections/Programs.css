@@ -1,0 +1,87 @@
+.programs {
+  background: var(--cream-light);
+}
+
+.programs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3.5rem;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.program-card {
+  background: var(--off-white);
+  border: 1px solid rgba(160,120,80,0.15);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.program-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(59,42,26,0.08); }
+.program-card:hover::before { transform: scaleX(1); }
+
+.program-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(196,154,60,0.08);
+  border: 1px solid rgba(196,154,60,0.15);
+  border-radius: 4px; /* Ganti ke kotak agar lebih modern */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+  transition: all 0.3s ease;
+}
+
+.program-card:hover .program-icon {
+  background: var(--gold);
+  color: var(--cream-light);
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.program-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.program-card p {
+  font-size: 0.86rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.program-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  background: rgba(160,120,80,0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  display: inline-block;
+}

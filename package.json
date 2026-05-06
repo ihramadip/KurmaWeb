@@ -1,0 +1,13 @@
+{
+  "name": "kurma-web",
+  "version": "1.0.0",
+  "description": "Website KURMA (Keluarga Remaja Masjid Al-Ikhuwwah)",
+  "scripts": {
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
