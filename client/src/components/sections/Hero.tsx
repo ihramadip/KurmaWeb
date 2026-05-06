@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Hero.css';
+import { getCmsData } from '../../services/api';
 
 const Hero: React.FC = () => {
+  const [stats, setStats] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCmsData();
+      if (data && data.stats) {
+        setStats(data.stats);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="hero">
       <div className="hero-bg"></div>
@@ -31,18 +44,29 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="hero-stats">
-        <div className="stat-item">
-          <span className="stat-num">120+</span>
-          <div className="stat-label">Anggota Aktif</div>
-        </div>
-        <div className="stat-item">
-          <span className="stat-num">8</span>
-          <div className="stat-label">Divisi</div>
-        </div>
-        <div className="stat-item">
-          <span className="stat-num">5th</span>
-          <div className="stat-label">Tahun Berdiri</div>
-        </div>
+        {stats.length > 0 ? (
+          stats.map((stat, index) => (
+            <div className="stat-item" key={index}>
+              <span className="stat-num">{stat.value}</span>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))
+        ) : (
+          <>
+            <div className="stat-item">
+              <span className="stat-num">120+</span>
+              <div className="stat-label">Anggota Aktif</div>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">8</span>
+              <div className="stat-label">Divisi</div>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">5th</span>
+              <div className="stat-label">Tahun Berdiri</div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

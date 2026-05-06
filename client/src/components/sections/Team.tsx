@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Team.css';
+import { getCmsData } from '../../services/api';
 
 const Team: React.FC = () => {
-  const members = [
-    { initial: "A", name: "Ahmad Fauzan", role: "Ketua Umum" },
-    { initial: "F", name: "Farah Nabilah", role: "Sekretaris" },
-    { initial: "R", name: "Rizky Hamdani", role: "Bendahara" },
-    { initial: "S", name: "Salma Aulia", role: "Div. Keputrian" },
-    { initial: "M", name: "Muhammad Iqbal", role: "Div. Dakwah" },
-    { initial: "D", name: "Dina Rahmawati", role: "Div. Pendidikan" },
-    { initial: "H", name: "Hasan Albana", role: "Div. Olahraga" },
-    { initial: "N", name: "Nurul Hidayah", role: "Div. Sosial" }
-  ];
+  const [members, setMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('Fetching Team data...');
+      const data = await getCmsData();
+      console.log('Team data received:', data?.team);
+      if (data && data.team) {
+        setMembers(data.team);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <section className="pengurus" id="pengurus">
@@ -22,13 +26,19 @@ const Team: React.FC = () => {
       </div>
 
       <div className="pengurus-grid">
-        {members.map((member, index) => (
-          <div className="pengurus-card fade-in fade-up" key={index} style={{ transitionDelay: `${index * 80}ms` }}>
-            <div className="pengurus-avatar">{member.initial}</div>
-            <div className="pengurus-name">{member.name}</div>
-            <div className="pengurus-role">{member.role}</div>
+        {members && members.length > 0 ? (
+          members.map((member, index) => (
+            <div className="pengurus-card fade-in fade-up" key={index} style={{ transitionDelay: `${index * 80}ms` }}>
+              <div className="pengurus-avatar">{member?.initial || '?'}</div>
+              <div className="pengurus-name">{member?.name || 'Nama Pengurus'}</div>
+              <div className="pengurus-role">{member?.role || 'Jabatan'}</div>
+            </div>
+          ))
+        ) : (
+          <div style={{ textAlign: 'center', gridColumn: '1/-1', padding: '2rem' }}>
+            <p>Memuat tim pengurus...</p>
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

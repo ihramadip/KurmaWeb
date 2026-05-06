@@ -20,7 +20,24 @@ const Home: React.FC = () => {
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    const scanAndObserve = () => {
+      document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+    };
+
+    // Initial scan
+    scanAndObserve();
+
+    // Re-scan when content changes (useful for CMS data)
+    const mutationObserver = new MutationObserver(() => {
+      scanAndObserve();
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return (

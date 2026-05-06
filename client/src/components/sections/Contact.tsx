@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { MapPin, Phone, Mail, type LucideIcon } from 'lucide-react';
 import './Contact.css';
+import { getCmsData } from '../../services/api';
+
+const IconMap: Record<string, LucideIcon> = {
+  '🕌': MapPin,
+  '📱': Phone,
+  '📧': Mail,
+  'Alamat': MapPin,
+  'WhatsApp': Phone,
+  'Email': Mail
+};
 
 const Contact: React.FC = () => {
+  const [contacts, setContacts] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCmsData();
+      if (data && data.contacts) {
+        setContacts(data.contacts);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const renderIcon = (iconData: string, title: string) => {
+    // Cek di Map berdasarkan emoji atau Judul Platform
+    const IconComponent = IconMap[iconData] || IconMap[title] || Mail;
+    return <IconComponent size={24} strokeWidth={1.5} />;
+  };
+
   return (
     <section className="contact" id="kontak">
       <div className="fade-in fade-left">
@@ -9,29 +38,23 @@ const Contact: React.FC = () => {
         <h2 className="section-title">Ayo Jadi Bagian dari KURMA</h2>
         <p style={{ fontSize: '0.9rem', color: 'var(--text-mid)', marginBottom: '3rem', lineHeight: '1.9' }}>Kami menerima anggota baru dengan tangan terbuka. Bergabunglah bersama kami dan jadilah bagian dari keluarga yang saling mendukung dalam kebaikan.</p>
 
-        <div className="contact-info-item">
-          <div className="contact-icon">🕌</div>
-          <div>
-            <h4>Alamat Masjid</h4>
-            <p>Masjid Al-Ikhuwwah<br />Jl. Contoh No. 123, Bandung<br />Jawa Barat, 40123</p>
+        {contacts.length > 0 ? (
+          contacts.map((contact, index) => (
+            <div className="contact-info-item" key={index}>
+              <div className="contact-icon">
+                {renderIcon(contact?.icon, contact?.platform || contact?.title)}
+              </div>
+              <div>
+                <h4>{contact?.title || 'Informasi'}</h4>
+                <p dangerouslySetInnerHTML={{ __html: (contact?.content || '').replace(/\n/g, '<br />') }}></p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="contact-loading">
+            <p>Memuat kontak...</p>
           </div>
-        </div>
-
-        <div className="contact-info-item">
-          <div className="contact-icon">📱</div>
-          <div>
-            <h4>WhatsApp</h4>
-            <p>+62 812 3456 7890<br />Senin – Sabtu, 08.00 – 20.00</p>
-          </div>
-        </div>
-
-        <div className="contact-info-item">
-          <div className="contact-icon">📧</div>
-          <div>
-            <h4>Email</h4>
-            <p>kurma.alikhuwwah@gmail.com</p>
-          </div>
-        </div>
+        )}
       </div>
 
       <div className="fade-in fade-right">

@@ -46,6 +46,10 @@
   transition: background 0.2s, border-color 0.2s;
 }
 
+.event-item.clickable {
+  cursor: pointer;
+}
+
 .event-item:hover {
   background: rgba(196,154,60,0.07);
   border-color: rgba(196,154,60,0.3);
@@ -107,4 +111,228 @@
   background: rgba(196,154,60,0.15);
   color: var(--gold-light);
   border: 1px solid rgba(196,154,60,0.25);
+}
+
+/* --- Modal List Styles (See All) --- */
+.event-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(42, 30, 15, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2rem;
+  animation: fadeInModal 0.3s ease;
+}
+
+.event-modal-content {
+  background: var(--cream-light);
+  width: 100%;
+  max-width: 900px;
+  max-height: 85vh;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--gold);
+  animation: slideUpModal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.event-modal-header {
+  padding: 2rem 2.5rem;
+  border-bottom: 1px solid var(--cream-mid);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--cream);
+}
+
+.event-modal-header .section-title {
+  margin-bottom: 0 !important;
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  color: var(--text-dark) !important;
+}
+
+.close-modal {
+  background: none; border: none; font-size: 2.5rem; color: var(--text-light); cursor: pointer; line-height: 1; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%;
+}
+.close-modal:hover { color: var(--brown-mid); background: var(--cream-mid); }
+
+.event-modal-body { padding: 2rem 2.5rem; overflow-y: auto; flex: 1; background: var(--cream-light); }
+.modal-events-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.event-modal-body .event-item { background: white; border: 1px solid var(--cream-mid); }
+.event-modal-body .event-info h4 { color: var(--text-dark); }
+.event-modal-body .event-info span, .event-modal-body .event-date-month { color: var(--text-mid); }
+.event-modal-body .event-item:hover { background: var(--cream); border-color: var(--gold); }
+
+/* --- Detail Modal Styles (Poster & Info) --- */
+.detail-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(42, 30, 15, 0.95);
+  backdrop-filter: blur(15px);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 3000; padding: 2rem;
+  animation: fadeInModal 0.3s ease;
+}
+
+.detail-modal-content {
+  background: var(--cream-light);
+  width: 100%; max-width: 1000px; max-height: 90vh;
+  border-radius: 4px; position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--gold);
+  animation: zoomInModal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.detail-modal-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr;
+  height: 100%;
+}
+
+.detail-poster {
+  background: #1a1a1a;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  border-right: 1px solid var(--cream-mid);
+}
+
+.detail-poster img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.img-loading-spinner, .img-error-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--brown-muted);
+}
+
+.img-loading-spinner .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(196, 154, 60, 0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.img-error-msg span {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.img-error-msg p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.poster-placeholder {
+  color: var(--brown-muted); font-style: italic; font-size: 0.9rem;
+}
+
+.detail-info {
+  padding: 3.5rem; overflow-y: auto;
+  background: white;
+}
+
+.detail-info .section-title {
+  color: var(--text-dark);
+  font-weight: 600; /* Dibuat lebih tebal */
+  margin-top: 0.5rem;
+  line-height: 1.1;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.detail-meta {
+  margin: 2rem 0; padding: 1.5rem;
+  background: var(--cream-light);
+  border-radius: 4px; border-left: 3px solid var(--gold);
+}
+
+.meta-item {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.meta-item svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.meta-item span {
+  line-height: 1.4;
+}
+
+.detail-description {
+  line-height: 1.8; color: var(--text-mid); font-size: 0.95rem;
+}
+
+.close-detail {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: white; border: 1px solid var(--cream-mid);
+  font-size: 2rem; color: var(--text-dark);
+  width: 45px; height: 45px; border-radius: 50%;
+  cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+
+.close-detail:hover {
+  transform: rotate(90deg); color: var(--gold); border-color: var(--gold);
+}
+
+/* --- Animations --- */
+@keyframes zoomInModal {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 900px) {
+  .detail-modal-body {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  
+  .detail-poster {
+    height: 400px;
+  }
+
+  .detail-info {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .event-modal-overlay, .detail-modal-overlay { padding: 1rem; }
+  .event-modal-header { padding: 1.2rem 1.5rem; }
+  .event-modal-body { padding: 1.2rem 1.5rem; }
+  .event-modal-content { max-height: 92vh; }
+  .event-modal-body .event-item { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .event-modal-body .event-badge { grid-column: 1 / -1; text-align: center; }
 }

@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './About.css';
+import { getCmsData } from '../../services/api';
 
 const About: React.FC = () => {
+  const [values, setValues] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCmsData();
+      if (data && data.values) {
+        setValues(data.values);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="about" id="tentang">
       <div className="about-visual fade-in fade-left">
@@ -25,22 +38,25 @@ const About: React.FC = () => {
         <p>Kami percaya bahwa masjid bukan hanya tempat ibadah, tetapi juga pusat peradaban dan pemberdayaan generasi muda yang siap menghadapi tantangan zaman.</p>
 
         <div className="about-values">
-          <div className="value-item">
-            <h4>Keimanan</h4>
-            <p>Memperkuat pondasi aqidah dan ibadah sehari-hari</p>
-          </div>
-          <div className="value-item">
-            <h4>Keilmuan</h4>
-            <p>Menumbuhkan semangat belajar dan mengkaji ilmu</p>
-          </div>
-          <div className="value-item">
-            <h4>Kebersamaan</h4>
-            <p>Mempererat ukhuwah di antara sesama anggota</p>
-          </div>
-          <div className="value-item">
-            <h4>Kebermanfaatan</h4>
-            <p>Berkontribusi nyata untuk masyarakat sekitar</p>
-          </div>
+          {values.length > 0 ? (
+            values.map((val, index) => (
+              <div className="value-item" key={index}>
+                <h4>{val.title}</h4>
+                <p>{val.desc}</p>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="value-item">
+                <h4>Keimanan</h4>
+                <p>Memperkuat pondasi aqidah dan ibadah sehari-hari</p>
+              </div>
+              <div className="value-item">
+                <h4>Keilmuan</h4>
+                <p>Menumbuhkan semangat belajar dan mengkaji ilmu</p>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

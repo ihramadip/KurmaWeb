@@ -26,6 +26,10 @@
   font-size: 1rem;
 }
 
+.contact-icon svg {
+  color: var(--gold);
+}
+
 .contact-info-item h4 {
   font-family: var(--font-serif);
   font-size: 1rem;
