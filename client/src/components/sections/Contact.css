@@ -107,3 +107,15 @@
   height: 120px;
   resize: vertical;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem;
+  }
+}

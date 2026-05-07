@@ -31,3 +31,10 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+@media (max-width: 768px) {
+  .marquee-item {
+    font-size: 0.8rem;
+    padding: 0 1.5rem;
+  }
+}
